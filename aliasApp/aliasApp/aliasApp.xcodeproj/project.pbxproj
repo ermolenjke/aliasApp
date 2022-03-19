@@ -15,6 +15,7 @@
 		883F952D27C68A8D001F4F35 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 883F952B27C68A8D001F4F35 /* LaunchScreen.storyboard */; };
 		883F953527C6ACBF001F4F35 /* GameWindowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883F953427C6ACBF001F4F35 /* GameWindowViewController.swift */; };
 		883F953727C6B4A6001F4F35 /* NewGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 883F953627C6B4A6001F4F35 /* NewGameViewController.swift */; };
+		88DE977F27E60A2E00A4D964 /* ShuffledArays.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88DE977E27E60A2E00A4D964 /* ShuffledArays.swift */; };
 		88F7DA8527CA755A003D3B05 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88F7DA8427CA755A003D3B05 /* Model.swift */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,7 @@
 		883F952E27C68A8D001F4F35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		883F953427C6ACBF001F4F35 /* GameWindowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameWindowViewController.swift; sourceTree = "<group>"; };
 		883F953627C6B4A6001F4F35 /* NewGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGameViewController.swift; sourceTree = "<group>"; };
+		88DE977E27E60A2E00A4D964 /* ShuffledArays.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShuffledArays.swift; sourceTree = "<group>"; };
 		88F7DA8427CA755A003D3B05 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -72,6 +74,7 @@
 				883F952427C68A87001F4F35 /* СategoryViewController.swift */,
 				883F953427C6ACBF001F4F35 /* GameWindowViewController.swift */,
 				88F7DA8427CA755A003D3B05 /* Model.swift */,
+				88DE977E27E60A2E00A4D964 /* ShuffledArays.swift */,
 			);
 			path = aliasApp;
 			sourceTree = "<group>";
@@ -148,6 +151,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				88F7DA8527CA755A003D3B05 /* Model.swift in Sources */,
+				88DE977F27E60A2E00A4D964 /* ShuffledArays.swift in Sources */,
 				883F952527C68A87001F4F35 /* СategoryViewController.swift in Sources */,
 				883F952127C68A87001F4F35 /* AppDelegate.swift in Sources */,
 				883F953727C6B4A6001F4F35 /* NewGameViewController.swift in Sources */,

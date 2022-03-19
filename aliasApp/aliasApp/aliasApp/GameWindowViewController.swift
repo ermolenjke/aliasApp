@@ -16,6 +16,8 @@ class GameWindowViewController: UIViewController {
     @IBOutlet weak var plusButton: UIButton!
     @IBOutlet weak var minusButton: UIButton!
     public var gameFieldText: String = ""
+
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,8 +47,9 @@ class GameWindowViewController: UIViewController {
             sender.alpha = 1.0
             
         }
-        
-        model.nextWord()
+        guard model.easyMode.count != 0 else {return}
+        gameField.text! = model.easyMode.removeFirst()
+//        model.nextWord()
     }
     
     @IBAction func minusTapped(_ sender: UIButton) {
@@ -56,7 +59,9 @@ class GameWindowViewController: UIViewController {
             sender.alpha = 1.0
             
         }
-        model.nextWord()
+//        model.nextWord()
+        guard model.easyMode.count != 0 else {return}
+        gameField.text! = model.easyMode.removeFirst()
     }
     //MARK: - Алерт для выхода из игры
     
