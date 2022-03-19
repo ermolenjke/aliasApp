@@ -23,6 +23,10 @@ class GameWindowViewController: UIViewController {
         gameField.text = gameFieldText
         isHiddenTrue()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelTapped))
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         updateUI()
     }
     
@@ -39,9 +43,10 @@ class GameWindowViewController: UIViewController {
         sender.alpha = 0.5
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             sender.alpha = 1.0
-            self.model.nextWord()
+            
         }
         
+        model.nextWord()
     }
     
     @IBAction func minusTapped(_ sender: UIButton) {
@@ -49,9 +54,9 @@ class GameWindowViewController: UIViewController {
         sender.alpha = 0.5
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             sender.alpha = 1.0
-            self.model.nextWord()
+            
         }
-        
+        model.nextWord()
     }
     //MARK: - Алерт для выхода из игры
     
@@ -84,7 +89,7 @@ class GameWindowViewController: UIViewController {
     }
     
     func  updateUI() {
-        gameField.text = model.getWords()
+        gameFieldText = model.getWords()
         scoreLabel.text = "Score: \(model.getScore())"
     }
 }
