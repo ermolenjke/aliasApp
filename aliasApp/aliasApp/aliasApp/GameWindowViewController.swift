@@ -55,7 +55,15 @@ class GameWindowViewController: UIViewController {
             print(Float(passedTime) / Float(totalTime))
         } else {
             timer.invalidate()
+            let alertController = UIAlertController(title: "Игра закончена", message: "Вы набрали", preferredStyle: .alert)
+            let action = UIAlertAction (title: "Выйти", style: .default) { action in
+                let vc = self.storyboard!.instantiateViewController(withIdentifier: "newGameWindow")
+                self.navigationController!.pushViewController(vc, animated: true)
+            }
             
+            alertController.addAction(action)
+            
+            self.present(alertController, animated: true)
         }
     }
     
