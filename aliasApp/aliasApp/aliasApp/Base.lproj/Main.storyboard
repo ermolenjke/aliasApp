@@ -99,6 +99,10 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" fixedFrame="YES" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="BCe-5l-XaV">
+                                <rect key="frame" x="82" y="108" width="210" height="4"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </progressView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="go2-ZR-3Aj"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -106,6 +110,7 @@
                     <navigationItem key="navigationItem" id="jAi-Ga-9ds"/>
                     <connections>
                         <outlet property="gameField" destination="tSO-io-wma" id="06d-sf-GgD"/>
+                        <outlet property="leftTime" destination="BCe-5l-XaV" id="RZN-Iq-LIH"/>
                         <outlet property="minusButton" destination="Mi2-p5-HS7" id="ykf-NR-jTS"/>
                         <outlet property="plusButton" destination="2l0-XY-x97" id="uR5-cW-vGO"/>
                         <outlet property="scoreLabel" destination="pzz-6b-jkG" id="7QT-tX-E4i"/>

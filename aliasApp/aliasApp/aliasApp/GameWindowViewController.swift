@@ -15,8 +15,11 @@ class GameWindowViewController: UIViewController {
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var plusButton: UIButton!
     @IBOutlet weak var minusButton: UIButton!
+    @IBOutlet weak var leftTime: UIProgressView!
     public var gameFieldText: String = ""
-
+    var timer = Timer()
+    var totalTime = 60
+    var passedTime = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,10 +28,11 @@ class GameWindowViewController: UIViewController {
         isHiddenTrue()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelTapped))
         
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
-//        updateUI()
+        //        updateUI()
     }
     
     @IBAction func startTapped(_ sender: UIButton) {
@@ -37,6 +41,22 @@ class GameWindowViewController: UIViewController {
             sender.alpha = 1.0 }
         startButton.isHidden = true
         isHiddenFalse()
+        timer.invalidate()
+        leftTime.progress = 0.0
+        passedTime = 0
+        
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target:self, selector: #selector(updateTimer), userInfo:nil, repeats: true)
+    }
+    
+    @objc func updateTimer() {
+        if passedTime < totalTime {
+            passedTime += 1
+            leftTime.progress = Float(passedTime) / Float(totalTime)
+            print(Float(passedTime) / Float(totalTime))
+        } else {
+            timer.invalidate()
+            
+        }
     }
     
     @IBAction func plusTapped(_ sender: UIButton) {
@@ -46,10 +66,10 @@ class GameWindowViewController: UIViewController {
             sender.alpha = 1.0
             
         }
-//        guard model.easyMode.count != 0 else {return}
-//        gameField.text! = model.easyMode.removeFirst()
+        //        guard model.easyMode.count != 0 else {return}
+        //        gameField.text! = model.easyMode.removeFirst()
         
-//        model.nextWord()
+        //        model.nextWord()
     }
     
     @IBAction func minusTapped(_ sender: UIButton) {
@@ -59,10 +79,10 @@ class GameWindowViewController: UIViewController {
             sender.alpha = 1.0
             
         }
-//        model.nextWord()
+        //        model.nextWord()
         
-//        guard model.easyMode.count != 0 else {return}
-//        gameField.text! = model.easyMode.removeFirst()
+        //        guard model.easyMode.count != 0 else {return}
+        //        gameField.text! = model.easyMode.removeFirst()
     }
     //MARK: - Алерт для выхода из игры
     
@@ -85,6 +105,7 @@ class GameWindowViewController: UIViewController {
         plusButton.isHidden = true
         minusButton.isHidden = true
         scoreLabel.isHidden = true
+        leftTime.isHidden = true
     }
     
     func isHiddenFalse() {
@@ -92,10 +113,8 @@ class GameWindowViewController: UIViewController {
         plusButton.isHidden = false
         minusButton.isHidden = false
         scoreLabel.isHidden = false
+        leftTime.isHidden = false
     }
-    
-//    func  updateUI() {
-//        gameFieldText = model.getWords()
-//        scoreLabel.text = "Score: \(model.getScore())"
-//    }
 }
+
+    
