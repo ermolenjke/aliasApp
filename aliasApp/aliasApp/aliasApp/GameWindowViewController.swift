@@ -9,7 +9,7 @@ import UIKit
 
 class GameWindowViewController: UIViewController {
     
-    var model = Model()
+    var gameModel = GameModel()
     @IBOutlet weak var gameField: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var startButton: UIButton!
@@ -17,7 +17,6 @@ class GameWindowViewController: UIViewController {
     @IBOutlet weak var minusButton: UIButton!
     public var gameFieldText: String = ""
 
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +28,7 @@ class GameWindowViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        updateUI()
+//        updateUI()
     }
     
     @IBAction func startTapped(_ sender: UIButton) {
@@ -47,8 +46,9 @@ class GameWindowViewController: UIViewController {
             sender.alpha = 1.0
             
         }
-        guard model.easyMode.count != 0 else {return}
-        gameField.text! = model.easyMode.removeFirst()
+//        guard model.easyMode.count != 0 else {return}
+//        gameField.text! = model.easyMode.removeFirst()
+        
 //        model.nextWord()
     }
     
@@ -60,8 +60,9 @@ class GameWindowViewController: UIViewController {
             
         }
 //        model.nextWord()
-        guard model.easyMode.count != 0 else {return}
-        gameField.text! = model.easyMode.removeFirst()
+        
+//        guard model.easyMode.count != 0 else {return}
+//        gameField.text! = model.easyMode.removeFirst()
     }
     //MARK: - Алерт для выхода из игры
     
@@ -93,8 +94,8 @@ class GameWindowViewController: UIViewController {
         scoreLabel.isHidden = false
     }
     
-    func  updateUI() {
-        gameFieldText = model.getWords()
-        scoreLabel.text = "Score: \(model.getScore())"
-    }
+//    func  updateUI() {
+//        gameFieldText = model.getWords()
+//        scoreLabel.text = "Score: \(model.getScore())"
+//    }
 }

@@ -9,8 +9,7 @@ import UIKit
 
 class CategoryViewController: UITableViewController {
     
-    let gameWindowViewController = GameWindowViewController()
-    var model = Model()
+    var gameModel = GameModel()
     
     
     
@@ -22,12 +21,12 @@ class CategoryViewController: UITableViewController {
     
     // MARK: - Table View Data Source
     override func tableView(_ tableView: UITableView,numberOfRowsInSection section: Int) -> Int {
-        return model.category.count
+        return gameModel.gameModel.count
     }
     
     override func tableView(_ tableView: UITableView,cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier:"CategoryItem")
-        cell?.textLabel?.text = model.category[indexPath.row]
+        cell?.textLabel?.text = gameModel.gameModel[indexPath.row].category
         return cell!
     }
     
@@ -38,27 +37,12 @@ class CategoryViewController: UITableViewController {
     // MARK: - Table View Delegate
     override func tableView(_ tableView: UITableView,didSelectRowAt indexPath: IndexPath)   {
         tableView.deselectRow(at: indexPath, animated: true)
-        let row = indexPath.row
+        let category = gameModel.gameModel[indexPath.row]
         guard let vc = self.storyboard!.instantiateViewController(withIdentifier: "gameWindow") as? GameWindowViewController else {
             return
         }
-        
-        switch row {
-        case 0:
-            vc.gameFieldText = model.easyMode.shuffled().first ?? "error"
-            navigationController?.pushViewController(vc, animated: true)
-        case 1:
-            vc.gameFieldText = model.mediumMode.shuffled().first ?? "error"
-            navigationController?.pushViewController(vc, animated: true)
-        case 2:
-            vc.gameFieldText = model.hardMode.shuffled().first ?? "error"
-            navigationController?.pushViewController(vc, animated: true)
-        case 3:
-            vc.gameFieldText = model.randomMode.shuffled().first ?? "error"
-            navigationController?.pushViewController(vc, animated: true)
-        default:
-            print("error")
-        }
+        vc.gameFieldText = category.wordsOfCategory.shuffled().first ?? "error"
+        navigationController?.pushViewController(vc, animated: true)
         
     }
     
