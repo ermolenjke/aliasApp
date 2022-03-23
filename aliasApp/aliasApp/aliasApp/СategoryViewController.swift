@@ -41,7 +41,7 @@ class CategoryViewController: UITableViewController {
         guard let vc = self.storyboard!.instantiateViewController(withIdentifier: "gameWindow") as? GameWindowViewController else {
             return
         }
-        vc.gameModel.wordsArray = category.wordsOfCategory.shuffled()
+        vc.wordsArray = category.wordsOfCategory.shuffled()
         navigationController?.pushViewController(vc, animated: true)
         
     }

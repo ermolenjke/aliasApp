@@ -16,21 +16,21 @@ class GameWindowViewController: UIViewController {
     @IBOutlet weak var plusButton: UIButton!
     @IBOutlet weak var minusButton: UIButton!
     @IBOutlet weak var leftTime: UIProgressView!
-    
+    var wordsArray: [String] = []
     var timer = Timer()
     var totalTime = 60
     var passedTime = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         isHiddenTrue()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelTapped))
-//        updateUI()
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        scoreLabel.text = "Score: \(gameModel.score)"
+    }
     
     @IBAction func startTapped(_ sender: UIButton) {
         sender.alpha = 0.5
@@ -41,7 +41,7 @@ class GameWindowViewController: UIViewController {
         timer.invalidate()
         leftTime.progress = 0.0
         passedTime = 0
-        gameField.text = gameModel.wordsArray.removeFirst()
+        gameField.text = wordsArray.removeFirst()
         timer = Timer.scheduledTimer(timeInterval: 1.0, target:self, selector: #selector(updateTimer), userInfo:nil, repeats: true)
     }
     
@@ -69,9 +69,9 @@ class GameWindowViewController: UIViewController {
             sender.alpha = 1.0
             
         }
-        guard gameModel.wordsArray.count != 0 else {return}
-        gameField.text! = gameModel.wordsArray.removeFirst()
-//        gameModel.nextWord()
+        guard wordsArray.count != 0 else {return}
+        gameField.text! = wordsArray.removeFirst()
+        gameModel.score += 1
     }
     
     @IBAction func minusTapped(_ sender: UIButton) {
@@ -81,9 +81,10 @@ class GameWindowViewController: UIViewController {
             sender.alpha = 1.0
             
         }
-        //gameModel.nextWord()
-        guard gameModel.wordsArray.count != 0 else {return}
-        gameField.text! = gameModel.wordsArray.removeFirst()
+       
+        guard wordsArray.count != 0 else {return}
+        gameField.text! = wordsArray.removeFirst()
+        gameModel.score -= 1
     }
     //MARK: - Алерт для выхода из игры
     
@@ -117,11 +118,6 @@ class GameWindowViewController: UIViewController {
         leftTime.isHidden = false
     }
     
-    func updateUI() {
-            gameField.text = gameModel.getWords()
-            scoreLabel.text = "Score: \(gameModel.getScore())"
-            
-        }
 }
 
     
