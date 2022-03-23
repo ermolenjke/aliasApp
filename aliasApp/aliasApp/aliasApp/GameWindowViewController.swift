@@ -16,7 +16,7 @@ class GameWindowViewController: UIViewController {
     @IBOutlet weak var plusButton: UIButton!
     @IBOutlet weak var minusButton: UIButton!
     @IBOutlet weak var leftTime: UIProgressView!
-    public var gameFieldText: String = ""
+    
     var timer = Timer()
     var totalTime = 60
     var passedTime = 0
@@ -24,16 +24,13 @@ class GameWindowViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        gameField.text = gameFieldText
+        
         isHiddenTrue()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelTapped))
-        
+//        updateUI()
         
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        //        updateUI()
-    }
     
     @IBAction func startTapped(_ sender: UIButton) {
         sender.alpha = 0.5
@@ -44,7 +41,7 @@ class GameWindowViewController: UIViewController {
         timer.invalidate()
         leftTime.progress = 0.0
         passedTime = 0
-        
+        gameField.text = gameModel.wordsArray.first
         timer = Timer.scheduledTimer(timeInterval: 1.0, target:self, selector: #selector(updateTimer), userInfo:nil, repeats: true)
     }
     
@@ -52,10 +49,9 @@ class GameWindowViewController: UIViewController {
         if passedTime < totalTime {
             passedTime += 1
             leftTime.progress = Float(passedTime) / Float(totalTime)
-            print(Float(passedTime) / Float(totalTime))
         } else {
             timer.invalidate()
-            let alertController = UIAlertController(title: "Игра закончена", message: "Вы набрали", preferredStyle: .alert)
+            let alertController = UIAlertController(title: "Игра закончена", message: "Вы набрали \(passedTime)", preferredStyle: .alert)
             let action = UIAlertAction (title: "Выйти", style: .default) { action in
                 let vc = self.storyboard!.instantiateViewController(withIdentifier: "newGameWindow")
                 self.navigationController!.pushViewController(vc, animated: true)
@@ -74,10 +70,9 @@ class GameWindowViewController: UIViewController {
             sender.alpha = 1.0
             
         }
-        //        guard model.easyMode.count != 0 else {return}
-        //        gameField.text! = model.easyMode.removeFirst()
-        
-        //        model.nextWord()
+        guard gameModel.wordsArray.count != 0 else {return}
+        gameField.text! = gameModel.wordsArray.removeFirst()
+//        gameModel.nextWord()
     }
     
     @IBAction func minusTapped(_ sender: UIButton) {
@@ -87,10 +82,9 @@ class GameWindowViewController: UIViewController {
             sender.alpha = 1.0
             
         }
-        //        model.nextWord()
-        
-        //        guard model.easyMode.count != 0 else {return}
-        //        gameField.text! = model.easyMode.removeFirst()
+        //gameModel.nextWord()
+        guard gameModel.wordsArray.count != 0 else {return}
+        gameField.text! = gameModel.wordsArray.removeFirst()
     }
     //MARK: - Алерт для выхода из игры
     
@@ -123,6 +117,12 @@ class GameWindowViewController: UIViewController {
         scoreLabel.isHidden = false
         leftTime.isHidden = false
     }
+    
+    func updateUI() {
+            gameField.text = gameModel.getWords()
+            scoreLabel.text = "Score: \(gameModel.getScore())"
+            
+        }
 }
 
     

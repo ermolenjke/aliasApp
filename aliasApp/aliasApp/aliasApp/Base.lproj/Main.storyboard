@@ -135,7 +135,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Button"/>
                                 <connections>
-                                    <segue destination="9IF-Ea-S4e" kind="show" id="usT-ts-M42"/>
+                                    <segue destination="9IF-Ea-S4e" kind="presentation" modalTransitionStyle="coverVertical" id="6p2-I7-YTc"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aNf-1s-Lkg">
@@ -161,13 +161,40 @@
             </objects>
             <point key="canvasLocation" x="4976.8000000000002" y="63.418290854572717"/>
         </scene>
-        <!--View Controller-->
+        <!--Rules View Controller-->
         <scene sceneID="R1M-fE-Mlc">
             <objects>
-                <viewController id="9IF-Ea-S4e" sceneMemberID="viewController">
+                <viewController id="9IF-Ea-S4e" customClass="RulesViewController" customModule="aliasApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="J1K-aW-noS">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="S6y-Eq-5Ro">
+                                <rect key="frame" x="55" y="36" width="265" height="446"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <mutableString key="text">1. Команды играют поочерёдно. Объясняющий игрок меняется в каждом раунде.
+2. Количество правильно угаданных слов соответствует количеству шагов вперёд.
+3. Количество ошибок и пропущенных слов
+соответствует количеству штрафных шагов.
+4. Поля имеют номера от 1 до 8. Поле, на котором стоит фишка команды, задаёт номер объясняемого слова.
+5. В раунде «Вечеринка» слова нужно объяснять необычными способами.
+6. После успешного розыгрыша хода «Вечеринка» команда кидает кубик, чтобы определить количество бонусных шагов.
+7. Команда, которая первой достигнет финиша, побеждает в игре!</mutableString>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Ku-PF-SMX">
+                                <rect key="frame" x="154" y="530" width="67" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                <connections>
+                                    <action selector="close" destination="9IF-Ea-S4e" eventType="touchUpInside" id="buE-Lu-MNv"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="jR2-tk-gZH"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
@@ -175,7 +202,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R2z-CK-WBu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4977" y="800"/>
+            <point key="canvasLocation" x="4976.8000000000002" y="799.2503748125938"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="JZw-oB-mkf">
@@ -197,6 +224,9 @@
         </scene>
     </scenes>
     <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
