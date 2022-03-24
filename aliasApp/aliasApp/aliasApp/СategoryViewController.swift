@@ -48,58 +48,6 @@ class CategoryViewController: UITableViewController {
     
 }
 
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//
-//    @IBOutlet weak var tableView: UITableView!
-//
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return gameCategory.count
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
-//        cell?.textLabel?.text = gameCategory[indexPath.row]
-//        return cell!
-//    }
-//
-    
-//
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//
-//        guard let vc = storyboard?.instantiateViewController(withIdentifier: "gameWindow") as? GameWindowViewController else {
-//            return
-//        }
-//
-//        vc.navigationItem.largeTitleDisplayMode = .never
-//        navigationController?.pushViewController(vc, animated: true)
-//
-//    }
 
 
 

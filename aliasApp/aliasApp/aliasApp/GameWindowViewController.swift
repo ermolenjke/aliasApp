@@ -18,19 +18,22 @@ class GameWindowViewController: UIViewController {
     @IBOutlet weak var leftTime: UIProgressView!
     var wordsArray: [String] = []
     var timer = Timer()
-    var totalTime = 60
+    var totalTime = 3
     var passedTime = 0
+    var score = 0 {
+        didSet {
+            scoreLabel.text = "Score: \(score)"
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         isHiddenTrue()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelTapped))
-        
+        scoreLabel.text = "Score: \(score)"
+    
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        scoreLabel.text = "Score: \(gameModel.score)"
-    }
     
     @IBAction func startTapped(_ sender: UIButton) {
         sender.alpha = 0.5
@@ -42,7 +45,36 @@ class GameWindowViewController: UIViewController {
         leftTime.progress = 0.0
         passedTime = 0
         gameField.text = wordsArray.removeFirst()
+        
         timer = Timer.scheduledTimer(timeInterval: 1.0, target:self, selector: #selector(updateTimer), userInfo:nil, repeats: true)
+        
+    }
+    
+    func totalScore(score:Int) -> String {
+        switch score {
+        case 0:
+            return "Вы набрали \(score) очков!"
+        case 1:
+            return "Вы набрали \(score) очко!"
+        case 2...4:
+            return "Вы набрали \(score) очка!"
+        case 5...20:
+            return "Вы набрали \(score) очков!"
+        case 21:
+            return "Вы набрали \(score) очко!"
+        case 22...24:
+            return "Вы набрали \(score) очка!"
+        case -1:
+            return "Вы набрали \(score) очко!"
+        case -4 ... -2:
+            return "Вы набрали \(score) очка!"
+        case -5 ... -20:
+            return "Вы набрали \(score) очков!"
+        
+        default:
+            return "Хм"
+        }
+        
     }
     
     @objc func updateTimer() {
@@ -51,7 +83,7 @@ class GameWindowViewController: UIViewController {
             leftTime.progress = Float(passedTime) / Float(totalTime)
         } else {
             timer.invalidate()
-            let alertController = UIAlertController(title: "Игра закончена", message: "Вы набрали \(passedTime)", preferredStyle: .alert)
+            let alertController = UIAlertController(title: "Игра закончена", message: totalScore(score: score), preferredStyle: .alert)
             let action = UIAlertAction (title: "Выйти", style: .default) { action in
                 let vc = self.storyboard!.instantiateViewController(withIdentifier: "newGameWindow")
                 self.navigationController!.pushViewController(vc, animated: true)
@@ -71,7 +103,7 @@ class GameWindowViewController: UIViewController {
         }
         guard wordsArray.count != 0 else {return}
         gameField.text! = wordsArray.removeFirst()
-        gameModel.score += 1
+        score += 1
     }
     
     @IBAction func minusTapped(_ sender: UIButton) {
@@ -84,7 +116,7 @@ class GameWindowViewController: UIViewController {
        
         guard wordsArray.count != 0 else {return}
         gameField.text! = wordsArray.removeFirst()
-        gameModel.score -= 1
+        score -= 1
     }
     //MARK: - Алерт для выхода из игры
     
